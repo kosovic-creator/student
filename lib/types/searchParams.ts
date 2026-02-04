@@ -18,41 +18,7 @@ export type validacijaSearchParams<T extends string> = {
 /**
  * Search params za rezervacije
  */
-export type RezervacijaSearchParams = validacijaSearchParams<
-  'soba' | 'gost' | 'prijava' | 'odjava' | 'status'
-> & {
-  id?: string;
-};
 
-/**
- * Search params za sobe
- */
-export type SobaSearchParams = validacijaSearchParams<
-  'broj' | 'tip' | 'kapacitet' | 'cena' | 'opis' | 'slike' | 'tip_en' | 'opis_en'
-> & {
-  id?: string;
-  sobaId?: string;
-};
-
-/**
- * Search params za auth
- */
-export type AuthSearchParams = validacijaSearchParams<
-  'ime' | 'prezime' | 'email' | 'lozinka'
->;
-
-/**
- * Search params za goste
- */
-export type GostiSearchParams = validacijaSearchParams<
-  'ime' | 'prezime' | 'email' | 'telefon'
-> & {
-  id?: string;
-};
-
-/**
- * Search params za studente
- */
 export type StudentSearchParams = validacijaSearchParams<
   'ime'
 > & {
