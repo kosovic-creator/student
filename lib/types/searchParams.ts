@@ -19,12 +19,15 @@ export type validacijaSearchParams<T extends string> = {
  * Search params za rezervacije
  */
 
+
 export type StudentSearchParams = validacijaSearchParams<
   'ime'
 > & {
   id?: string;
   studentId?: string;
 };
+
+
 
 /**
  * Opšti async search params wrapper
