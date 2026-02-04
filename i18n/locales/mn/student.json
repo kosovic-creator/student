@@ -1,0 +1,20 @@
+{
+   "name":"Ime",
+   "actions":"Akcije",
+   "students":"Studenti",
+   "newStudent":"Novi student",
+   "edit":"Uredi",
+   "delete":"Obriši",
+   "cancel":"Otkaži",
+   "save":"Sačuvaj",
+   "search":"Pretraži",
+   "form_description":"Molimo popunite donji obrazac da dodate novog studenta.",
+   "name_min_error":"Ime može imati najmanje 3 karaktera.",
+   "name_max_error":"Ime može imati najviše 5 karaktera.",
+   "student_not_found":"Student nije pronađen.",
+   "invalid_student_id":"Neispravan ID studenta.",
+   "years_error":"Godine moraju biti najmanje 1.",
+   "student_create_success":"Student je uspešno kreiran.",
+   "student_update_success":"Student je uspešno ažuriran.",
+   "student_delete_success":"Student je uspešno obrisan."
+}

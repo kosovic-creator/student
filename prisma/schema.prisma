@@ -1,0 +1,66 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Korisnik {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  ime       String?
+  lozinka   String?
+  uloga     String   @default("admin")
+}
+
+model Soba {
+  id           Int         @id @default(autoincrement())
+  broj         String      @unique
+  tip          String
+  opis         String
+  kapacitet    Int
+  cena         Float
+  slike        String[]
+  tip_en       String
+  opis_en      String
+  rezervacije  Rezervacija[]
+}
+
+model Gost {
+  id           Int         @id @default(autoincrement())
+  ime          String
+  prezime      String
+  email        String      @unique
+  telefon      String?
+  rezervacije  Rezervacija[]
+}
+
+model Rezervacija {
+  id         Int       @id @default(autoincrement())
+  soba       Soba      @relation(fields: [sobaId], references: [id])
+  sobaId     Int
+  gost       Gost      @relation(fields: [gostId], references: [id])
+  gostId     Int
+  prijava    DateTime
+  odjava     DateTime
+  status     String    // npr. "na čekanju", "potvrđeno", "otkazano"
+  kreirano   DateTime  @default(now())
+  azurirano  DateTime  @updatedAt
+}
+
+
+
+model Student{
+  id   Int    @id @default(autoincrement())
+  ime  String
+}
+
+
