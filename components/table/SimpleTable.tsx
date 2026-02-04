@@ -8,7 +8,7 @@ type SimpleTableProps = {
 export function SimpleTable({ children, className = '' }: SimpleTableProps) {
   return (
     <div className={`overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-800 ${className}`}>
-      <table className="w-full text-sm">
+      <table className="text-sm min-w-full">
         {children}
       </table>
     </div>
