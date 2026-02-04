@@ -10,9 +10,9 @@ export default async function IzmjeniGostaPage({ searchParams }: { searchParams:
     const t = await getLocaleMessages(lang, 'student');
     const commonMessages = await getLocaleMessages(lang, 'common');
 
-    const id = Number(params.studentId ?? params.id);
+    const id = Number(params.studentId );
 
-    if ((!params.studentId && !params.id) || isNaN(id)) {
+    if ((!params.studentId ) || isNaN(id)) {
         return <div>{t.invalid_student_id}</div>;
     }
 

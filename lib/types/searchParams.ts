@@ -23,11 +23,12 @@ export type validacijaSearchParams<T extends string> = {
 export type StudentSearchParams = validacijaSearchParams<
   'ime'
 > & {
-  id?: string;
   studentId?: string;
 };
 
-
+export type CommonSearchParams = {
+  lang?: string;
+};
 
 /**
  * Opšti async search params wrapper

@@ -39,7 +39,6 @@ export default async function StudentiPage({
       )}
       <div className="p-6 space-y-4">
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold">{t.students}</h1>
           <Suspense fallback={<div>Loading...</div>}>
             <StudentSearch placeholder={t.search ?? 'Pretraži...'} />
           </Suspense>

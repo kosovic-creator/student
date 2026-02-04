@@ -1,8 +1,9 @@
 import { getLocaleMessages } from '@/i18n/i18n';
+import { CommonSearchParams } from '@/lib/types/searchParams';
 
-type CommonSearchParams = {
-  lang?: string;
-};
+// type CommonSearchParams = {
+//   lang?: string;
+// };
 
 export default async function Home({ searchParams }: { searchParams: Promise<CommonSearchParams> }) {
   const params = await searchParams;

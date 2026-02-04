@@ -12,9 +12,8 @@ export default function Navbar() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const { t, i18n } = useTranslation("navbar");
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [mounted] = useState(true);
+  const {  i18n } = useTranslation("navbar");
+
 
   useEffect(() => {
     const urlLang = searchParams.get("lang");
@@ -30,7 +29,7 @@ export default function Navbar() {
     params.set("lang", lng);
     router.push(`${pathname}?${params.toString()}`);
     i18n.changeLanguage(lng);
-    setMenuOpen(false);
+
   };
 
 
@@ -47,6 +46,9 @@ export default function Navbar() {
         <div className="hidden sm:block">
 
           <Button variant="ghost" size="sm" asChild>
+            <Link href={`/studenti?lang=${i18n.language}`}>Studenti</Link>
+          </Button>
+          <Button variant="ghost" className="size-sm text-amber-100" asChild>
             <Link href={`/studenti?lang=${i18n.language}`}>Studenti</Link>
           </Button>
         </div>
