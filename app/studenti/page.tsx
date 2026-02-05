@@ -33,10 +33,10 @@ export default async function StudentiPage({
   return (
     <>
       {successParam && (
-        <SuccessMessage message={successParam} />
+        <SuccessMessage message={successParam} namespace="student" />
       )}
       {errorParam && (
-        <ErrorMessage message={errorParam} />
+        <ErrorMessage message={errorParam} namespace="student" />
       )}
       <div className="p-6 space-y-4">
         <div className="flex justify-between items-center">

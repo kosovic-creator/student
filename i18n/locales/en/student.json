@@ -18,6 +18,10 @@
     "student_not_found":"Student not found.",
     "invalid_student_id":"Invalid student ID.",
     "student_create_success":"Student created successfully.",
+    "student_create_error": "Failed to create student.",
     "student_update_success":"Student updated successfully.",
-    "student_delete_success":"Student deleted successfully."
+    "student_update_error": "Failed to update student.",
+    "student_delete_success": "Student deleted successfully.",
+    "student_delete_error": "Failed to delete student.",
+    "student_already_exists": "Student with this name already exists."
 }

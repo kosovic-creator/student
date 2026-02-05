@@ -53,12 +53,12 @@ export async function dodajStudenta(formData: FormData) {
     });
   } catch (error: any) {
     revalidatePath('/studenti');
-    const message = error.code === 'P2002' ? 'errorExists' : 'errorGeneral';
+    const message = error.code === 'P2002' ? 'student_already_exists' : 'student_create_error';
     redirect(createFailureRedirect('/studenti', message, lang));
   }
 
   revalidatePath('/studenti');
-  redirect(createSuccessRedirect('/studenti', 'successAdded', lang));
+  redirect(createSuccessRedirect('/studenti', 'student_create_success', lang));
 }
 
 export const azurirajStudenta = async (formData: FormData) => {
@@ -86,12 +86,12 @@ export const azurirajStudenta = async (formData: FormData) => {
     });
   } catch (error: any) {
     revalidatePath('/studenti');
-    const message = error.code === 'P2002' ? 'errorExists' : 'errorGeneral';
+    const message = error.code === 'P2002' ? 'student_already_exists' : 'student_update_error';
     redirect(createFailureRedirect('/studenti', message, lang));
   }
 
   revalidatePath('/studenti');
-  redirect(createSuccessRedirect('/studenti', 'successUpdated', lang));
+  redirect(createSuccessRedirect('/studenti', 'student_update_success', lang));
 };
 
 
@@ -102,16 +102,16 @@ export async function obrisiStudenta(formData: FormData) {
   try {
     const student = await prisma.student.findUnique({ where: { id } });
     if (!student) {
-      throw new Error('errorNotFound');
+      throw new Error('student_not_found');
     }
     await prisma.student.delete({ where: { id } });
   } catch (error) {
     revalidatePath('/studenti');
-    redirect(createFailureRedirect('/studenti', 'errorGeneral', lang));
+    redirect(createFailureRedirect('/studenti', 'student_delete_error', lang));
   }
 
   revalidatePath('/studenti');
-  redirect(createSuccessRedirect('/studenti', 'successDeleted', lang));
+  redirect(createSuccessRedirect('/studenti', 'student_delete_success', lang));
 }
 export default  traziStudenta;
 

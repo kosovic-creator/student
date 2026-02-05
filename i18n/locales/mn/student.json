@@ -18,6 +18,10 @@
    "invalid_student_id":"Neispravan ID studenta.",
    "years_error":"Godine moraju biti najmanje 1.",
    "student_create_success":"Student je uspešno kreiran.",
+   "student_create_error": "Neuspela kreacija studenta.",
    "student_update_success":"Student je uspešno ažuriran.",
-   "student_delete_success":"Student je uspešno obrisan."
+   "student_update_error": "Neuspelo ažuriranje studenta.",
+   "student_delete_success": "Student je uspešno obrisan.",
+   "student_delete_error": "Neuspelo brisanje studenta.",
+   "student_already_exists": "Student sa tim imenom već postoji."
 }
