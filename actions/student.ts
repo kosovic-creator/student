@@ -113,7 +113,8 @@ export async function obrisiStudenta(formData: FormData) {
   revalidatePath('/studenti');
   redirect(createSuccessRedirect('/studenti', 'student_delete_success', lang));
 }
-export default  traziStudenta;
+
+export default traziStudenta;
 
 async function traziStudenta(searchParams: { query: string }) {
   try {
@@ -133,7 +134,17 @@ async function traziStudenta(searchParams: { query: string }) {
     await prisma.$disconnect();
   }
 }
-export async function handleSubmit(formData: FormData) {
-  const inputValue = formData.get("imeInputa"); // npr. name="imeInputa"
-  console.log("Vrijednost inputa:", inputValue);
-}
+// export async function handleSubmit(formData: FormData) {
+//   const inputValue = formData.get("imeInputa"); // npr. name="imeInputa"
+//   const params = new URLSearchParams();
+//   params.append('query', inputValue as string);
+//   revalidatePath('/studenti');
+//   redirect(`/studenti?${params.toString()}`);
+//   console.log("Vrijednost inputa:", inputValue);
+// }
+
+
+// export async function clearFilters(formData: FormData) {
+//   revalidatePath('/studenti');
+//   redirect('/studenti');
+// }

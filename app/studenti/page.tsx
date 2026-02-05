@@ -6,7 +6,7 @@ import {
   TableHeaderCell,
   TableCell,
 } from '@/components/table/SimpleTable';
-import traziStudenta, { handleSubmit } from '@/actions/student';
+import traziStudenta, { clearFilters, handleSubmit, ucitajStudenta } from '@/actions/student';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { getLocaleMessages } from '@/i18n/i18n';
@@ -89,10 +89,14 @@ export default async function StudentiPage({
                 ))}
               </TableBody>
             </SimpleTable>
-            <form action={handleSubmit}>
+            {/* <form action={handleSubmit}>
               <input type="text" name="imeInputa" placeholder="Unesi tekst" />
               <button type="submit">Pošalji UseStete</button>
             </form>
+            <form action={clearFilters}>
+
+              <button type="submit">Poništi filtere</button>
+            </form> */}
           </div>
         )}
       </div>
