@@ -6,13 +6,14 @@ import {
   TableHeaderCell,
   TableCell,
 } from '@/components/table/SimpleTable';
-import traziStudenta, { obrisiStudenta } from '@/actions/student';
+import traziStudenta from '@/actions/student';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { getLocaleMessages } from '@/i18n/i18n';
 import { ErrorMessage, SuccessMessage } from '@/components/messages';
 import { StudentSearch } from './StudentSearch';
 import { Suspense } from 'react';
+import { StudentDeleteButton } from './StudentDeleteButton';
 
 export default async function StudentiPage({
   searchParams,
@@ -71,14 +72,17 @@ export default async function StudentiPage({
                             {t.edit}
                           </Button>
                         </Link>
-                        <form action={obrisiStudenta}>
-                          <input type="hidden" name="id" value={student.id} />
-                          <input type="hidden" name="lang" value={lang} />
-                          <Button variant="ghost" type="submit" size="sm" aria-label={t.delete} title={t.delete} >
-                            {t.delete}
-                          </Button>
-
-                        </form>
+                        <StudentDeleteButton
+                          id={student.id}
+                          lang={lang}
+                          label={t.delete}
+                          confirmTitle={t.delete_confirm_title ?? 'Potvrdi brisanje'}
+                          confirmBody={
+                            t.delete_confirm_body ?? 'Da li ste sigurni da želite obrisati studenta?'
+                          }
+                          cancelLabel={t.cancel ?? 'Otkaži'}
+                          confirmLabel={t.confirm ?? t.delete ?? 'Potvrdi'}
+                        />
                       </div>
                     </TableCell>
                   </TableRow>
