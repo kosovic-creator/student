@@ -133,4 +133,7 @@ async function traziStudenta(searchParams: { query: string }) {
     await prisma.$disconnect();
   }
 }
-
+export async function handleSubmit(formData: FormData) {
+  const inputValue = formData.get("imeInputa"); // npr. name="imeInputa"
+  console.log("Vrijednost inputa:", inputValue);
+}

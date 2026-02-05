@@ -6,7 +6,7 @@ import {
   TableHeaderCell,
   TableCell,
 } from '@/components/table/SimpleTable';
-import traziStudenta from '@/actions/student';
+import traziStudenta, { handleSubmit } from '@/actions/student';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { getLocaleMessages } from '@/i18n/i18n';
@@ -58,7 +58,7 @@ export default async function StudentiPage({
               <TableHead>
                 <TableRow>
                   <TableHeaderCell>{t.name}</TableHeaderCell>
-                    <TableHeaderCell className="min-w-fit">{t.actions}</TableHeaderCell>
+                  <TableHeaderCell className="min-w-fit">{t.actions}</TableHeaderCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -89,7 +89,10 @@ export default async function StudentiPage({
                 ))}
               </TableBody>
             </SimpleTable>
-
+            <form action={handleSubmit}>
+              <input type="text" name="imeInputa" placeholder="Unesi tekst" />
+              <button type="submit">Pošalji UseStete</button>
+            </form>
           </div>
         )}
       </div>
