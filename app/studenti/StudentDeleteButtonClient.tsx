@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useActionState, useTransition } from "react";
-import { SuccessMessage } from "@/app/components/SuccessMessage";
+import { useRouter } from "next/navigation";
+import { useToast } from "@/components/ui/toast";
 import { obrisiStudenta } from "@/actions/student";
 import { Button } from "@/components/ui/button";
 
@@ -37,24 +38,21 @@ export function StudentDeleteButtonClient({
 
   // Pozovi callback na success/error
   useEffect(() => {
-    if (state.success && state.message && onSuccess) {
-      onSuccess(state.message);
-      setIsOpen(false);
-    } else if (!state.success && state.error && onError) {
-      onError(state.error);
+    if (state.success && state.message) {
+      if (onSuccess) onSuccess(state.message);
+    } else if (!state.success && state.error) {
+      if (onError) onError(state.error);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.success, state.message, state.error]);
 
   return (
     <>
-      {state.success && state.message && (
-        <SuccessMessage>{state.message}</SuccessMessage>
-      )}
+      {/* Toast notifikacije */}
       <form
         action={formAction}
         className="inline"
-        onSubmit={() => startTransition(() => setIsOpen(false))}
+        onSubmit={() => setIsOpen(false)}
       >
         <input type="hidden" name="id" value={id} />
         <Button

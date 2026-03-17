@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
-import { useState } from "react";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { SuccessMessage } from '@/app/components/SuccessMessage';
+import { useToast } from '@/components/ui/toast';
+import { useRouter } from 'next/navigation';
 import { StudentDeleteButtonClient } from './StudentDeleteButtonClient';
 
 type Student = { id: number; ime: string };
@@ -15,26 +15,24 @@ type Props = {
 };
 
 export default function StudentListClient({ students, t }: Props) {
-  const [successMessage, setSuccessMessage] = useState<string | undefined>(undefined);
-  const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
   const hasStudents = !!students && students.length > 0;
   const isSingleRow = !!students && students.length === 1;
+    const toast = useToast();
+    const router = useRouter();
 
-  // Redirect posle prikaza poruke o uspehu brisanja
-
-  React.useEffect(() => {
-    if (successMessage) {
-      const timeout = setTimeout(() => {
-        window.location.href = "/studenti";
-      }, 1500);
-      return () => clearTimeout(timeout);
-    }
-  }, [successMessage]);
+    // Callback za prikaz toast notifikacije i osvežavanje liste
+    const handleDeleteSuccess = (msg: string) => {
+        toast(msg, "success");
+        setTimeout(() => {
+            router.refresh();
+        }, 1500);
+    };
+    const handleDeleteError = (msg: string) => {
+        toast(msg, "error");
+    };
 
   return (
-    <>
-      {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
-      {errorMessage && <SuccessMessage message={errorMessage} type="error" />}
+      <>
       {!hasStudents ? (
         <div className="rounded-lg border border-dashed p-8 text-center text-sm text-muted-foreground">
           {t.noStudents ?? 'Nema studenata.'}
@@ -66,8 +64,8 @@ export default function StudentListClient({ students, t }: Props) {
                         confirmBody={t.delete_confirm_body ?? 'Da li ste sigurni da želite obrisati studenta?'}
                         cancelLabel={t.cancel ?? 'Otkaži'}
                         confirmLabel={t.confirm ?? t.delete ?? 'Potvrdi'}
-                        onSuccess={setSuccessMessage}
-                        onError={setErrorMessage}
+                                  onSuccess={handleDeleteSuccess}
+                                  onError={handleDeleteError}
                       />
                     </div>
                   </TableCell>

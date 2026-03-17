@@ -3,7 +3,7 @@ import { useActionState, useEffect } from "react";
 import { dodajStudenta } from "@/actions/student";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { SuccessMessage } from "@/app/components/SuccessMessage";
+import { useToast } from "@/components/ui/toast";
 
 type State = {
   success: boolean;
@@ -24,15 +24,19 @@ const initialState: State = { success: false, errors: {}, values: {}, message: "
 
 export default function DodajStudentaClient({ messages }: { messages: Messages }) {
   const [state, formAction] = useActionState(dodajStudenta, initialState);
-
+    const toast = useToast();
   useEffect(() => {
     if (state.success) {
+        toast(messages.student_create_success, "success");
       const timeout = setTimeout(() => {
         window.location.href = "/studenti";
       }, 1500);
       return () => clearTimeout(timeout);
+    } else if (state.message) {
+        toast(state.message, "error");
     }
-  }, [state.success]);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.success, state.message]);
 
   return (
     <form action={formAction} className="max-w-md mx-auto space-y-6 bg-white p-6 rounded shadow">
@@ -51,8 +55,7 @@ export default function DodajStudentaClient({ messages }: { messages: Messages }
           <div className="text-red-600 text-sm mt-1">{state.errors.ime[0]}</div>
         )}
       </div>
-        {state.success && <SuccessMessage>{messages.student_create_success}</SuccessMessage>}
-        {!state.success && state.message && <SuccessMessage message={state.message} type="error" />}
+          {/* Toast notifikacije */}
       <div className="flex gap-2 mt-4">
         <Button type="submit">{messages.newStudent}</Button>
         <Button type="button" variant="outline" onClick={() => window.location.href = "/studenti"}>

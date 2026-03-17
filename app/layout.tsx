@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { I18nProvider } from "@/i18n/I18nProvider";
 import Navbar from "./components/Navbar";
+import ClientProviders from "@/app/components/ClientProviders";
 import { Suspense } from "react";
 import { getServerLocale } from "@/lib/locale";
 import '@/i18n/config'; // Inicijalizuj i18n
@@ -36,8 +37,10 @@ export default async function RootLayout({
       >
         <Suspense fallback={<div>Loading...</div>}>
           <I18nProvider initialLang={lang}>
-            <Navbar />
-            {children}
+            <ClientProviders>
+              <Navbar />
+              {children}
+            </ClientProviders>
           </I18nProvider>
         </Suspense>
       </body>
