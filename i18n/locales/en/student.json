@@ -1,0 +1,27 @@
+{
+    "name":"Name",
+    "actions":"Actions",
+    "students":"Students",
+    "newStudent":"New Student",
+    "edit":"Edit",
+    "delete":"Delete",
+    "confirm": "Confirm",
+    "delete_confirm_title": "Confirm deletion",
+    "delete_confirm_body": "Are you sure you want to delete this student?",
+    "cancel":"Cancel",
+    "save":"Save",
+    "form_description":"Please fill out the form below to add a new student.",
+    "name_min_error":"Name must be at least 3 characters.",
+    "name_max_error":"Name must be at most 5 characters.",
+
+    "student_not_found":"Student not found.",
+    "invalid_student_id":"Invalid student ID.",
+    "student_create_success":"Student created successfully.",
+    "student_create_error": "Failed to create student.",
+    "student_update_success":"Student updated successfully.",
+    "student_update_error": "Failed to update student.",
+    "student_delete_success": "Student deleted successfully.",
+    "student_delete_error": "Failed to delete student.",
+    "student_already_exists": "Student with this name already exists.",
+    "search": "Search..."
+}
