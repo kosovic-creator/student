@@ -29,6 +29,9 @@ export default function Navbar() {
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-4">
           <Button variant="ghost" size="sm" asChild>
+            <Link href="/post" className="text-foreground">Postovi</Link>
+          </Button>
+          <Button variant="ghost" size="sm" asChild>
             <Link href="/studenti" className="text-foreground">Studenti</Link>
           </Button>
 
@@ -81,6 +84,14 @@ export default function Navbar() {
       {mobileMenuOpen && (
         <div className="md:hidden bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
           <div className="px-4 py-3 flex flex-col gap-3">
+            <Button
+              variant="ghost"
+              className="w-full justify-start text-left"
+              asChild
+              onClick={handleNavClick}
+            >
+              <Link href="/post" className="text-foreground">Postovi</Link>
+            </Button>
             <Button
               variant="ghost"
               className="w-full justify-start text-left"
