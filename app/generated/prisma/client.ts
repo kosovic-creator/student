@@ -46,3 +46,8 @@ export { Prisma }
  * 
  */
 export type Student = Prisma.StudentModel
+/**
+ * Model Post
+ * 
+ */
+export type Post = Prisma.PostModel
