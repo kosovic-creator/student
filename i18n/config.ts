@@ -8,15 +8,20 @@ import enCommon from './locales/en/common.json';
 import enStudent from './locales/en/student.json';
 import srCommon from './locales/sr/common.json';
 import srStudent from './locales/sr/student.json';
+import enPost from './locales/en/post.json';
+import srPost from './locales/sr/post.json';
 
 const resources = {
   en: {
     common: enCommon,
     student: enStudent,
+    post: enPost,
+
   },
   sr: {
     common: srCommon,
     student: srStudent,
+    post: srPost,
   },
 };
 
@@ -28,7 +33,7 @@ if (!i18n.isInitialized) {
       fallbackLng: defaultLocale,
       supportedLngs: supportedLocales as unknown as string[],
       debug: false,
-      ns: ['common', 'student'],
+      ns: ['common', 'student', 'post'],
       defaultNS: 'student',
       resources,
       interpolation: {

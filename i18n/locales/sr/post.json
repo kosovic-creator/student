@@ -1,0 +1,10 @@
+{
+    "error_title_min": "Naslov mora biti najmanje 3 karaktera ",
+    "error_title_max": "Naslov mora biti najviše 7 karaktera ",
+    "error": "Naslov mora biti između 3 i 7 karaktera",
+    "success_create": "Post je uspešno kreiran",
+    "title": "Postovi",
+    "creating": "Kreiranje...",
+    "create": "Kreiraj",
+    "error_server": "Greška na serveru"
+}

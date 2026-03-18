@@ -1,40 +1,42 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
-import { useActionState } from "react"
+import { useActionState, useEffect } from "react"
+import { useToast } from "@/components/ui/toast"
 import { createPost } from "@/actions/post"
 
 const initialState = {
   error: undefined,
   success: false,
+  message: "",
 }
+type Props = {
+  t: any;
+};
 
-export default function Form() {
+export default function Form({ t }: Props) {
+  const [state, formAction, pending] = useActionState(createPost, initialState)
+  const toast = useToast();
 
-  const [state, formAction, pending] =
-    useActionState(createPost, initialState)
+  useEffect(() => {
+    if (state?.success && state.message) {
+      toast(state.message, "success");
+    } else if (state?.error) {
+      toast(state.error, "error");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state?.success, state?.error, state?.message]);
 
   return (
     <form action={formAction}>
-
       <input
         name="title"
-        placeholder="Post title"
+        placeholder={t["title"]}
       />
-
       <button disabled={pending}>
-        {pending ? "Creating..." : "Create"}
+        {pending ? t["creating"] : t["create"]}
       </button>
-
-      {state?.error && (
-        <p style={{color:"red"}}>
-          {state.error}
-        </p>
-      )}
-
-      {state?.success && (
-        <p>Post created!</p>
-      )}
-
+      {/* Poruke se prikazuju kao toast notifikacije */}
     </form>
   )
 }

@@ -1,0 +1,10 @@
+{
+    "error_title_min": "Title must be at least 3 characters ",
+    "error_title_max": "Title must be at most 7 characters ",
+    "error": "Title must be between 3 and 7 characters",
+    "success_create": "Post created successfully",
+    "title": "Posts",
+    "creating": "Creating...",
+    "create": "Create",
+    "error_server": "Server error"
+}

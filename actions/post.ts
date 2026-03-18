@@ -2,22 +2,33 @@
 "use server"
 
 import { z } from "zod"
-import  prisma  from "@/lib/prisma"
+import prisma from "@/lib/prisma"
 import { revalidatePath } from "next/cache"
-
-const schema = z.object({
-  title: z.string().min(3)
-})
+import { getLocaleMessages } from '@/i18n/i18n';
+import { postSchema } from '@/app/validacija/postSchema';
+import { getServerLocale } from '@/lib/locale';
+import { error } from "console";
 
 export async function createPost(prevState: any, formData: FormData) {
+
+  const lang = await getServerLocale();
+  const t = await getLocaleMessages(lang, 'post');
+  const schema = postSchema((key) => t[key]);
+
+  const title = formData.get("title") as string;
   const result = schema.safeParse({
     title: formData.get("title")
-  })
+  });
 
+  if (title === "greška") {
+    return {
+      error:  t["error_server"], success: false, message: ""
+    };
+  }
   if (!result.success) {
     return {
-      error: "Title must be at least 3 characters"
-    }
+      error: t["error"], success: false, message: ""
+    };
   }
 
   await prisma.post.create({
@@ -27,6 +38,5 @@ export async function createPost(prevState: any, formData: FormData) {
   })
 
   revalidatePath("/")
-
-  return { success: true }
+  return { success: true, message: t["success_create"] };
 }
