@@ -53,6 +53,11 @@ export async function dodajStudenta(
     return { success: false, errors, values: { ime } };
   }
 
+  if (ime === 'greška') {
+    console.log("Greška simulirana zbog unosa 'greška'");
+    return { success: false, errors: { ime: [t.greška] } };
+  }
+
   try {
     await prisma.student.create({
       data: { ime },

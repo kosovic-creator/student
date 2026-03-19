@@ -23,5 +23,5 @@
     "student_delete_success": "Student deleted successfully.",
     "student_delete_error": "Failed to delete student.",
     "student_already_exists": "Student with this name already exists.",
-    "search": "Search..."
+    "greška":"Error"
 }

@@ -23,5 +23,6 @@
    "student_update_error": "Neuspelo ažuriranje studenta.",
    "student_delete_success": "Student je uspešno obrisan.",
    "student_delete_error": "Neuspelo brisanje studenta.",
-   "student_already_exists": "Student sa tim imenom već postoji."
+   "student_already_exists": "Student sa tim imenom već postoji.",
+   "greška":"Greška"
 }

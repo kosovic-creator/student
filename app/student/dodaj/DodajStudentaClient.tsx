@@ -24,7 +24,17 @@ const initialState: State = { success: false, errors: {}, values: {}, message: "
 
 export default function DodajStudentaClient({ messages }: { messages: Messages }) {
   const [state, formAction] = useActionState(dodajStudenta, initialState);
-    const toast = useToast();
+  const toast = useToast();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    if (!window.navigator.onLine) {
+      e.preventDefault();
+      toast("Aplikacija je offline! Pokušajte kasnije.", "error");
+      return;
+    }
+    formAction(e);
+  };
+
   useEffect(() => {
     if (state.success) {
         toast(messages.student_create_success, "success");
@@ -39,7 +49,7 @@ export default function DodajStudentaClient({ messages }: { messages: Messages }
   }, [state.success, state.message]);
 
   return (
-    <form action={formAction} className="max-w-md mx-auto space-y-6 bg-white p-6 rounded shadow">
+    <form onSubmit={handleSubmit} action={formAction} className="max-w-md mx-auto space-y-6 bg-white p-6 rounded shadow">
       <h1 className="text-2xl font-bold mb-2">{messages.newStudent}</h1>
       <p className="text-gray-500 mb-4">{messages.form_description}</p>
       <div>
