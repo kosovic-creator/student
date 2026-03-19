@@ -31,12 +31,27 @@ export async function createPost(prevState: any, formData: FormData) {
     };
   }
 
-  await prisma.post.create({
+  const noviPost = await prisma.post.create({
     data: {
       title: result.data.title
     }
-  })
+  });
 
-  revalidatePath("/")
-  return { success: true, message: t["success_create"] };
+  revalidatePath("/");
+  return { success: true, message: t["success_create"], post: noviPost };
+}
+export async function deletePost(id: number) {
+  const lang = await getServerLocale();
+  const t = await getLocaleMessages(lang, 'post');
+  try {
+    const post = await prisma.post.findUnique({ where: { id: String(id) } });
+    if (!post) {
+      return { error: t["error_server"], success: false, message: "" };
+    }
+    await prisma.post.delete({ where: { id: String(id) } });
+    revalidatePath("/");
+    return { success: true, message: t["success_delete"] };
+  } catch {
+    return { error: t["error_server"], success: false, message: "" };
+  }
 }

@@ -28,11 +28,14 @@ export default function Navbar() {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-4">
-          <Button variant="ghost" size="sm" asChild>
+          {/* <Button variant="ghost" size="sm" asChild>
             <Link href="/post" className="text-foreground">Postovi</Link>
-          </Button>
+          </Button> */}
           <Button variant="ghost" size="sm" asChild>
             <Link href="/studenti" className="text-foreground">Studenti</Link>
+          </Button>
+           <Button variant="ghost" size="sm" asChild>
+            <Link href="/student" className=" text-amber-700">Student</Link>
           </Button>
 
           <div className="flex gap-2">

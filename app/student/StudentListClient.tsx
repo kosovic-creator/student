@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { useToast } from '@/components/ui/toast';
 import { useRouter } from 'next/navigation';
-import { StudentDeleteButtonClient } from './StudentDeleteButtonClient';
+import StudentDeleteClient  from './StudentDeleteClient';
 
 type Student = { id: number; ime: string };
 
@@ -21,16 +21,13 @@ export default function StudentListClient({ students, t }: Props) {
     const toast = useToast();
     const router = useRouter();
 
-    // Callback za prikaz toast notifikacije i osvežavanje liste
+    // Callback samo za refresh, toast prikazuje StudentDeleteClient
     const handleDeleteSuccess = (msg: string) => {
-        toast(msg, "success");
-        setTimeout(() => {
-            router.refresh();
-        }, 1500);
+      setTimeout(() => {
+        router.refresh();
+      }, 1500);
     };
-    const handleDeleteError = (msg: string) => {
-        toast(msg, "error");
-    };
+    const handleDeleteError = (msg: string) => {};
 
   return (
       <>
@@ -53,20 +50,16 @@ export default function StudentListClient({ students, t }: Props) {
                   <TableCell className="font-medium">{student.ime}</TableCell>
                   <TableCell className="font-medium">
                     <div className="flex gap-2">
-                      <Link href={`/studenti/izmeni?studentId=${student.id}`}>
+                      <Link href={`/student/izmeni?studentId=${student.id}`}>
                         <Button variant="ghost" >
                           {t.edit}
                         </Button>
                       </Link>
-                      <StudentDeleteButtonClient
+                      <StudentDeleteClient
                         id={student.id}
                         label={t.delete}
-                        confirmTitle={t.delete_confirm_title ?? 'Potvrdi brisanje'}
-                        confirmBody={t.delete_confirm_body ?? 'Da li ste sigurni da želite obrisati studenta?'}
-                        cancelLabel={t.cancel ?? 'Otkaži'}
-                        confirmLabel={t.confirm ?? t.delete ?? 'Potvrdi'}
-                                  onSuccess={handleDeleteSuccess}
-                                  onError={handleDeleteError}
+                        onSuccess={handleDeleteSuccess}
+                        onError={handleDeleteError}
                       />
                     </div>
                   </TableCell>

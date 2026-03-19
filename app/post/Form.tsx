@@ -12,10 +12,17 @@ const initialState = {
 }
 type Props = {
   t: any;
+
 };
 
 export default function Form({ t }: Props) {
-  const [state, formAction, pending] = useActionState(createPost, initialState)
+  const [state, formAction, pending] = useActionState(async (prev: any, formData: FormData) => {
+    const res = await createPost(prev, formData);
+    if (res?.success && res.post) {
+      // addPost(res.post);
+    }
+    return res;
+  }, initialState);
   const toast = useToast();
 
   useEffect(() => {
@@ -38,5 +45,5 @@ export default function Form({ t }: Props) {
       </button>
       {/* Poruke se prikazuju kao toast notifikacije */}
     </form>
-  )
+  );
 }
