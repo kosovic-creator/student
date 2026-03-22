@@ -39,7 +39,7 @@ export default function DodajStudentaClient({ messages }: { messages: Messages }
         toast(state.message, "error");
     }
       // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state.success, state.message]);
+   }, [state.success, state.message]);
 
   return (
     <form action={formAction} className="max-w-md mx-auto space-y-6 bg-white p-6 rounded shadow">
@@ -65,6 +65,7 @@ export default function DodajStudentaClient({ messages }: { messages: Messages }
           {messages.cancel}
         </Button>
       </div>
+
     </form>
   );
 }
